@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { DiaryIcon, monogramFont } from "@/lib/brand-icon";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-const serif = await readFile(join(process.cwd(), "src/assets/og/InstrumentSerif-Italic.ttf"));
+const serif = await monogramFont;
 
+// Home-screen tiles can't be transparent, so the diary sits on the site's paper.
 export default async function AppleIcon() {
   return new ImageResponse(
     (
@@ -17,14 +17,11 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#6b1f2c",
-          color: "#f3ede3",
-          fontFamily: "Serif",
-          fontSize: 150,
-          paddingBottom: 20,
+          paddingTop: 6,
+          background: "radial-gradient(circle at 50% 40%, #fbf8f2, #f3ede3 50%, #e2d7c4)",
         }}
       >
-        h
+        <DiaryIcon scale={2.3} />
       </div>
     ),
     { ...size, fonts: [{ name: "Serif", data: serif, style: "italic", weight: 400 }] },

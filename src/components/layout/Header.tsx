@@ -6,6 +6,7 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { chapters, folios, type Folio } from "@/content/sections";
 import { profile } from "@/content/profile";
 import { cn } from "@/lib/cn";
+import { BrandMark } from "@/components/ui/BrandMark";
 
 export default function Header() {
   const header = useRef<HTMLElement>(null);
@@ -76,8 +77,8 @@ export default function Header() {
       </a>
       <header ref={header} data-tone={open ? "dark" : tone} className="site-header">
         <div className="shell flex items-center justify-between gap-3 pt-3 sm:pt-4">
-          <a href="#cover" onClick={(e) => jump(e, "cover")} className="cap !pl-1.5" aria-label="Hayaz Diaries — back to cover">
-            <span className="display grid h-8 w-8 place-items-center rounded-full bg-wine pb-0.5 text-[1.35rem] text-paper">h</span>
+          <a href="#cover" onClick={(e) => jump(e, "cover")} className="cap !pl-2.5" aria-label="Hayaz Diaries — back to cover">
+            <BrandMark className="h-8 w-auto drop-shadow-[0_2px_3px_rgb(20_17_15/0.25)]" />
             <span className="hidden font-serif text-[1.15rem] tracking-tight xs:inline">Hayaz Diaries</span>
           </a>
 

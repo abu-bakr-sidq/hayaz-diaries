@@ -1,33 +1,26 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { DiaryIcon, monogramFont } from "@/lib/brand-icon";
 
-export const size = { width: 64, height: 64 };
-export const contentType = "image/png";
+const serif = await monogramFont;
 
-const serif = await readFile(join(process.cwd(), "src/assets/og/InstrumentSerif-Italic.ttf"));
+// A bold 32px cut for browser tabs and the full mark at 64px.
+export function generateImageMetadata() {
+  return [
+    { id: "32", contentType: "image/png", size: { width: 32, height: 32 } },
+    { id: "64", contentType: "image/png", size: { width: 64, height: 64 } },
+  ];
+}
 
-export default async function Icon() {
+// The diary on a transparent tile, so the tab shows the book itself.
+export default async function Icon({ id }: { id: Promise<string | number> }) {
+  const small = (await id) === "32";
+  const px = small ? 32 : 64;
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#6b1f2c",
-          borderRadius: 16,
-          color: "#f3ede3",
-          fontFamily: "Serif",
-          fontSize: 54,
-          paddingBottom: 8,
-        }}
-      >
-        h
+      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <DiaryIcon scale={px / 64} small={small} />
       </div>
     ),
-    { ...size, fonts: [{ name: "Serif", data: serif, style: "italic", weight: 400 }] },
+    { width: px, height: px, fonts: [{ name: "Serif", data: serif, style: "italic", weight: 400 }] },
   );
 }

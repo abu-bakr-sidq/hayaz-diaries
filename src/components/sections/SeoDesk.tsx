@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { capabilities, skills } from "@/content/seo";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { cn } from "@/lib/cn";
+import { BrandMark } from "@/components/ui/BrandMark";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Search } from "@/components/ui/Icons";
 
@@ -190,7 +191,9 @@ function Serp() {
                 <span className="serp-site">
                   <span>
                     <span className="flex items-center gap-2.5 pb-2.5 text-[0.8rem]">
-                      <span className="display grid h-7 w-7 place-items-center rounded-full bg-wine pb-0.5 text-[1rem] text-paper">h</span>
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-paper-2 ring-1 ring-ink/10">
+                        <BrandMark className="h-5 w-auto" />
+                      </span>
                       <span className="leading-tight">
                         <span className="block font-medium">Hayaz Diaries</span>
                         <span className="block text-muted">hayazdiaries › seo › {c.slug}</span>
