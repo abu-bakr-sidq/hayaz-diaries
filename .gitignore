@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# raw media dropped in the project root (the web versions live in public/reels and src/assets)
-/*.mp4
-/Screenshot *.png
+# original media (raw reels, screenshots) — kept locally; web versions live in public/reels and src/assets
+/media-source/
