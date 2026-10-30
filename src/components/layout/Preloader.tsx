@@ -136,7 +136,8 @@ export default function Preloader() {
           {/* three leaves on top of it — the first one is "Dear diary" */}
           {[0, 1, 2].map((i) => (
             <div key={i} data-leaf className="diary__leaf" style={{ transform: `translateZ(${3 - i * 0.5}px)` }}>
-              <div className="diary__lines" />
+              {/* the first page keeps its ruling clear of the handwriting */}
+              <div className={i === 0 ? "diary__lines top-[50%]" : "diary__lines"} />
               {i === 0 && (
                 <div className="diary__ink">
                   <p className="hand diary__dear">Dear diary,</p>
