@@ -101,7 +101,7 @@ export default function WriteToMe() {
         className="pointer-events-none absolute -right-[10vw] -top-[12vw] h-[46vw] w-[46vw] rounded-full bg-[radial-gradient(circle,rgb(194_154_82/0.28),transparent_65%)]"
       />
       <div className="shell relative">
-        <SectionHead no="09" label="Write to Me" page="14" tone="dark" />
+        <SectionHead no="10" label="Write to Me" page="15" tone="dark" />
 
         <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-16 lg:mt-[clamp(1.5rem,4.5svh,3rem)]">
           <div className="col-span-12 lg:col-span-6">

@@ -1,17 +1,20 @@
 import Image from "next/image";
 import igShot from "@/assets/images/work/hayaz-ig.webp";
 import { profile } from "@/content/profile";
+import { getInstagramStats } from "@/lib/instagram";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { PressPass } from "./PressPass";
 
-const stats = [
-  { value: 10.5, decimals: 1, suffix: "K", label: `readers on ${profile.handle}` },
-  { value: 40, decimals: 0, suffix: "+", label: "reel & ad scripts written" },
-  { value: 2, decimals: 0, suffix: "+ yrs", label: "of SEO at Codux Digital" },
-  { value: 2, decimals: 0, suffix: "", label: "languages I write in — three, if you count Tanglish" },
-];
+export default async function Writer() {
+  const { followers } = await getInstagramStats();
+  // Followers count up in thousands, rounded down like Instagram shows them.
+  const stats = [
+    { value: Math.floor(followers / 100) / 10, decimals: 1, suffix: "K", label: `readers on ${profile.handle}` },
+    { value: 40, decimals: 0, suffix: "+", label: "reel & ad scripts written" },
+    { value: 2, decimals: 0, suffix: "+ yrs", label: "of SEO at Codux Digital" },
+    { value: 2, decimals: 0, suffix: "", label: "languages I write in — three, if you count Tanglish" },
+  ];
 
-export default function Writer() {
   return (
     // Extra room on top: the two hook tapes from the Ticker overlap this page.
     <section
@@ -39,7 +42,7 @@ export default function Writer() {
               className="polaroid relative mx-auto block w-full max-w-[340px] rotate-[2.5deg] transition-transform duration-700 ease-expo hover:rotate-0 sm:mt-6 sm:w-1/2 lg:mt-0 lg:w-full"
             >
               <span className="tape" aria-hidden />
-              <Image src={igShot} alt="Haya’s Instagram profile, @hayaz_diaries_ — 113 posts, 10.5K followers" sizes="340px" className="h-auto w-full" />
+              <Image src={igShot} alt="Haya’s Instagram profile, @hayaz_diaries_ — 114 posts, 11.1K followers" sizes="340px" className="h-auto w-full" />
               <span className="flex items-center justify-between px-1 py-3">
                 <span className="hand text-[1.45rem] text-wine">the diary itself →</span>
                 <span className="kicker text-muted">{profile.handle}</span>

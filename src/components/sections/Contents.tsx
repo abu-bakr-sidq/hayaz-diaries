@@ -24,7 +24,7 @@ export default function Contents() {
           </h2>
           <p data-reveal className="col-span-12 max-w-[40ch] text-[1.05rem] leading-relaxed text-mist md:col-span-5 md:justify-self-end">
             A content writer’s portfolio, laid out like a magazine — hooks that play like reels, the reels themselves, carousels you can
-            swipe, the search data behind it all, and a peek inside her bag.
+            swipe, the search data behind it all, the sites it shows up on, and a peek inside her bag.
           </p>
         </div>
 

@@ -107,7 +107,7 @@ export default function InHerBag() {
       className="spread relative overflow-hidden bg-champagne lg:h-svh lg:min-h-[640px]"
     >
       <div className="shell lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
-        <SectionHead no="06" label="In Her Bag" page="10" />
+        <SectionHead no="07" label="In Her Bag" page="11" />
 
         <div className="mt-12 grid grid-cols-12 items-end gap-x-6 gap-y-6 lg:mt-[clamp(1.25rem,3.5svh,2.5rem)]">
           <h2 id="bag-title" data-reveal className="display col-span-12 text-[clamp(3.2rem,min(8vw,10.2svh),7.4rem)] lg:col-span-8">

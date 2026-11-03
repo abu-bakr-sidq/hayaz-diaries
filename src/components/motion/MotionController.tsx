@@ -43,8 +43,15 @@ export default function MotionController() {
       ScrollTrigger.batch("[data-reveal]", {
         start: "top 92%",
         once: true,
-        onEnter: (batch) =>
-          gsap.to(batch, { autoAlpha: 1, y: 0, duration: 1.15, ease: "expo.out", stagger: 0.07, overwrite: true }),
+        // A jump through the page (menu, contents) enters dozens at once. Ones
+        // already scrolled past just appear, so the stagger only plays on
+        // screen and the destination isn't kept waiting.
+        onEnter: (batch) => {
+          const passed = batch.filter((el) => el.getBoundingClientRect().bottom < 0);
+          if (passed.length) gsap.set(passed, { autoAlpha: 1, y: 0 });
+          const onScreen = batch.filter((el) => !passed.includes(el));
+          gsap.to(onScreen, { autoAlpha: 1, y: 0, duration: 1.15, ease: "expo.out", stagger: 0.07, overwrite: true });
+        },
       });
 
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {

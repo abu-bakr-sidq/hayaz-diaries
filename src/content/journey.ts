@@ -25,3 +25,16 @@ export const languages = [
   { name: "Tamil", note: "Everyday & scriptwriting" },
   { name: "Tanglish", note: "Fluent, obviously" },
 ];
+
+// As printed on her certificate; the year-long course covered every strand below.
+export const certificate = {
+  title: "Certified Advanced Digital Content Writer",
+  short: "CADCW",
+  course: "Content Writing Course",
+  issuer: "Henry Harvin Education",
+  issued: "24 May 2025",
+  issuedISO: "2025-05-24",
+  number: "5230/HHE/2082",
+  length: "1 year",
+  modules: ["Content writing", "Creative writing", "Technical writing", "Copywriting"],
+};

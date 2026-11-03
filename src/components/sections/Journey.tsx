@@ -1,5 +1,7 @@
 import { education, experience, languages } from "@/content/journey";
 import { profile } from "@/content/profile";
+import { compactCount } from "@/lib/format";
+import { getInstagramStats } from "@/lib/instagram";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ArrowDown } from "@/components/ui/Icons";
 
@@ -15,13 +17,14 @@ function Tick() {
 const stop = "relative pb-16 pl-10 lg:pb-[clamp(1.75rem,4.4svh,3.5rem)]";
 const kickerGap = "mt-4 lg:mt-[clamp(0.5rem,1.4svh,1rem)]";
 
-export default function Journey() {
+export default async function Journey() {
+  const ig = await getInstagramStats();
   const years = education.map((e) => e.year).sort();
 
   return (
     <section id="journey" data-theme="dark" aria-labelledby="journey-title" className="spread relative bg-ink text-paper">
       <div className="shell">
-        <SectionHead no="07" label="The Journey" page="11" tone="dark" />
+        <SectionHead no="08" label="The Journey" page="12" tone="dark" />
 
         <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-16 lg:mt-[clamp(1.25rem,3.5svh,2.5rem)]">
           <div className="col-span-12 self-start lg:sticky lg:top-28 lg:col-span-5">
@@ -82,7 +85,7 @@ export default function Journey() {
                 Creator, Hayaz Diaries
               </h3>
               <p data-reveal className="mt-3 max-w-[52ch] text-[1rem] leading-relaxed text-paper/80 lg:mt-2">
-                {profile.tagline}. {profile.instagram.followers} followers and {profile.instagram.posts} posts of “juz reality yaps” on
+                {profile.tagline}. {compactCount(ig.followers)} followers and {ig.posts} posts of “juz reality yaps” on
                 Instagram, plus long-form videos on YouTube.
               </p>
             </li>

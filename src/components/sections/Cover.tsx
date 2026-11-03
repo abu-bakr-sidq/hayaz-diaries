@@ -6,6 +6,8 @@ import portrait from "@/assets/images/haya-portrait.webp";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { useIntroDone } from "@/lib/intro";
 import { profile } from "@/content/profile";
+import { compactCount } from "@/lib/format";
+import type { InstagramStats } from "@/lib/instagram";
 import { Barcode } from "@/components/ui/Barcode";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { RotatingBadge } from "@/components/ui/RotatingBadge";
@@ -14,7 +16,7 @@ import { ArrowDown, ArrowRight } from "@/components/ui/Icons";
 const coverLines = [
   ["40+ hooks that land in 3 seconds", "#hook-lab", "04"],
   ["Search data → growth", "#seo-desk", "08"],
-  ["What’s in her bag?", "#in-her-bag", "10"],
+  ["What’s in her bag?", "#in-her-bag", "11"],
 ] as const;
 
 /** Her Instagram bio, scribbled on the cover — the arrow points across at her photo. */
@@ -38,7 +40,7 @@ function Note() {
   );
 }
 
-function Readers() {
+function Readers({ followers }: { followers: number }) {
   return (
     <a
       data-c-reveal
@@ -46,9 +48,9 @@ function Readers() {
       target="_blank"
       rel="noreferrer"
       className="cover__readers group"
-      aria-label={`${profile.instagram.followers} readers on Instagram — open ${profile.handle}`}
+      aria-label={`${compactCount(followers)} readers on Instagram — open ${profile.handle}`}
     >
-      <span className="cover__stat display">{profile.instagram.followers}</span>
+      <span className="cover__stat display">{compactCount(followers)}</span>
       <span className="kicker block pb-1 leading-relaxed text-muted">
         readers on Instagram
         <br />
@@ -58,7 +60,7 @@ function Readers() {
   );
 }
 
-export default function Cover() {
+export default function Cover({ followers, posts }: InstagramStats) {
   const root = useRef<HTMLElement>(null);
   const intro = useRef<gsap.core.Timeline | null>(null);
   const ready = useIntroDone();
@@ -140,7 +142,7 @@ export default function Cover() {
             </span>
             <span className="hidden md:inline">Content · Scripts · Search</span>
             <span>
-              <span className="hidden sm:inline">Issue </span>No. {profile.instagram.posts}
+              <span className="hidden sm:inline">Issue </span>No. {posts}
             </span>
           </div>
           <div data-c-line className="h-px origin-left bg-ink/25" />
@@ -209,7 +211,7 @@ export default function Cover() {
 
           <aside className="cover__side" aria-label="Haya on Instagram">
             <Note />
-            <Readers />
+            <Readers followers={followers} />
             <ul className="cover__lines mt-7 border-t border-ink/15 text-[0.95rem]">
               {coverLines.map(([label, href, page]) => (
                 <li key={href} data-c-reveal className="border-b border-ink/15">
@@ -226,7 +228,7 @@ export default function Cover() {
         {/* Bottom strip */}
         <div className="cover__bottom shell mt-12 items-end justify-between gap-6 whitespace-nowrap pb-8 lg:mt-0 lg:pb-0 xl:justify-start xl:gap-10">
           <div data-c-reveal className="flex items-end gap-3">
-            <Barcode value="HAYAZ113" className="h-9 w-24 text-ink" />
+            <Barcode value={`HAYAZ${posts}`} className="h-9 w-24 text-ink" />
             <p className="kicker leading-snug text-muted">
               ₹0 · Free to read
               <span className="hidden sm:inline">

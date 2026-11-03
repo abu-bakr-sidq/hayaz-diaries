@@ -172,7 +172,7 @@ export default function UnderTheHood() {
             <p data-reveal className="kicker flex items-center gap-4 text-mist">
               <span className="text-gold">Under the hood</span>
               <span className="h-px w-16 bg-current opacity-30" />
-              <span>p. 09</span>
+              <span>p. 10</span>
             </p>
             <h2 id="hood-title" data-split className="display mt-8 text-[clamp(2.9rem,min(5.2vw,8.4svh),5.2rem)]">
               A little code, so the words get <em className="text-gold">found.</em>

@@ -65,7 +65,7 @@ export default function Wall() {
   return (
     <section id="wall" data-theme="light" aria-labelledby="wall-title" className="spread relative overflow-hidden bg-paper">
       <div className="shell">
-        <SectionHead no="08" label="The Wall" page="12" />
+        <SectionHead no="09" label="The Wall" page="14" />
 
         <div className="mt-12 grid grid-cols-12 items-end gap-x-6 gap-y-6 lg:mt-[clamp(1.25rem,3.5svh,2.5rem)]">
           <h2 id="wall-title" data-split className="display col-span-12 text-[clamp(3.2rem,min(7.6vw,10svh),7.2rem)] lg:col-span-8">

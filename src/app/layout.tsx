@@ -7,7 +7,9 @@ import Preloader from "@/components/layout/Preloader";
 import Header from "@/components/layout/Header";
 import Cursor from "@/components/layout/Cursor";
 import { description, profile } from "@/content/profile";
+import { certificate } from "@/content/journey";
 import { siteUrl } from "@/lib/site";
+import { getInstagramStats } from "@/lib/instagram";
 
 const serif = Instrument_Serif({
   subsets: ["latin"],
@@ -76,6 +78,13 @@ const jsonLd = {
     address: { "@type": "PostalAddress", addressLocality: "Chennai", addressRegion: "Tamil Nadu", addressCountry: "IN" },
     worksFor: { "@type": "Organization", name: "Codux Digital" },
     alumniOf: { "@type": "CollegeOrUniversity", name: "Bharathidasan University" },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: `${certificate.title} (${certificate.short})`,
+      credentialCategory: "certificate",
+      dateCreated: certificate.issuedISO,
+      recognizedBy: { "@type": "Organization", name: certificate.issuer },
+    },
     knowsLanguage: ["en", "ta"],
     knowsAbout: [
       "Content writing",
@@ -92,7 +101,8 @@ const jsonLd = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const ig = await getInstagramStats();
   return (
     <html
       lang="en"
@@ -104,7 +114,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body>
         <SmoothScroll>
-          <Preloader />
+          <Preloader issue={ig.posts} />
           <Header />
           {children}
         </SmoothScroll>

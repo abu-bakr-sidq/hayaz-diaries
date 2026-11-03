@@ -13,7 +13,7 @@ import { profile } from "@/content/profile";
  * and the camera dives into the first page. That page is the site's own paper,
  * so the cover's entrance simply carries on from it.
  */
-export default function Preloader() {
+export default function Preloader({ issue }: { issue: number }) {
   const root = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
   const done = useIntroDone();
@@ -113,7 +113,7 @@ export default function Preloader() {
       <div className="absolute inset-0 flex flex-col justify-between p-[clamp(1rem,4vw,3rem)]">
         <div data-ui className="kicker flex justify-between gap-4 text-mist">
           <span>Hayaz Diaries</span>
-          <span>Vol. 01 — Issue No. {profile.instagram.posts}</span>
+          <span>Vol. 01 — Issue No. {issue}</span>
         </div>
         <div data-ui className="flex items-end justify-between gap-4">
           <span className="kicker text-mist">Opening the diary…</span>
